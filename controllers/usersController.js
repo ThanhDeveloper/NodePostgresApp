@@ -12,19 +12,20 @@ const getUserById = function(req, res) {
 };
 
 // create user
-const createtUser = function(req, res) {
+const createUser = function(req, res) {
     res.status(201).send('user created');
 };
 
 // update user
-const updatetUser = function(req, res) {
+const updateUser = function(req, res) {
     const { id: userId } = req.params
     res.status(204).send(`user id ${userId} updated`);
 };
 
 // delete user
-const deletetUser = function(req, res) {
+const deleteUser = function(req, res) {
     const { id: userId } = req.params
     res.status(204).send(`user id ${userId} deleted`);
 };
-module.exports = { getUsers, getUserById, createtUser, updatetUser, deletetUser }
+
+module.exports = { getUsers, getUserById, createUser, updateUser, deleteUser }
