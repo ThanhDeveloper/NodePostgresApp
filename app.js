@@ -6,18 +6,20 @@ var cookieParser = require('cookie-parser');
 var xss =  require('xss-clean');
 var helmet = require('helmet');
 var morgan = require('morgan');
+var cors = require('cors');
 
-var notFoundMiddleware = require ('./middleware/not-found')
-var errorHandlerMiddleware = require ('./middleware/error-handle')
+var notFoundMiddleware = require ('./middleware/not-found.middleware')
+var errorHandlerMiddleware = require ('./middleware/error-handle.middleware')
 
-var indexRouter = require('./routes/indexRoute');
-var usersRouter = require('./routes/usersRoute');
+var indexRouter = require('./routes/index.route');
+var usersRouter = require('./routes/user.route');
 
 if (process.env.NODE_ENV !== 'production') {
   app.use(morgan('dev'))
 }
 
 //use
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(xss());
