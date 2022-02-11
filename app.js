@@ -14,6 +14,8 @@ var errorHandlerMiddleware = require ('./middleware/error-handle.middleware')
 var indexRouter = require('./routes/index.route');
 var usersRouter = require('./routes/user.route');
 
+var limitRequest =  require('./utils/limit-request.util');
+
 if (process.env.NODE_ENV !== 'production') {
   app.use(morgan('dev'))
 }
@@ -27,9 +29,9 @@ app.use(helmet());
 app.use(cookieParser());
 //app.use(express.static(path.join(__dirname, 'public')));
 
-// routers
+// routers and limit request
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/users', limitRequest.apiLimiter(1, 5), usersRouter);
 
 // middleware
 app.use(notFoundMiddleware)
