@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon --watch routes --watch services ./bin/www"
+    "start": "nodemon --watch routes --watch controllers --watch services ./bin/www"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -17,6 +17,8 @@
     "http-errors": "~1.6.3",
     "morgan": "^1.9.1",
     "pg": "^8.7.3",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.16.1",
     "xss-clean": "^0.1.1"
   },
   "devDependencies": {

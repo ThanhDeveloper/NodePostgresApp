@@ -1,7 +1,7 @@
 This application includes:
 
 - Backend: Nodejs + Expressjs
-- Client: Angular js
+- Client: Reactjs
 - Database: Postgres SQL
 
 ## Setup
@@ -24,10 +24,10 @@ Use `http://localhost:5001` as base url for endpoints
 | HTTP Requests     | URL            | Method   |
 | ----------------- | -------------- | -------- |
 | Index entry point | /              | `GET`    |
-| Get all users     | api/users      | `GET`    |
-| Get user by id    | api/users/:id | `GET`    |
-| Create new user   | api/users      | `POST`   |
-| Update user       | api/users/:id  | `PATCH`  |
-| Delete user       | api/users/:id  | `DELETE` |
+| Get all users     | api/v1/users      | `GET`    |
+| Get user by id    | api/v1/users/:id | `GET`    |
+| Create new user   | api/v1/users      | `POST`   |
+| Update user       | api/v1/users/:id  | `PATCH`  |
+| Delete user       | api/v1/users/:id  | `DELETE` |
 
 ## App demo

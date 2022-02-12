@@ -1,6 +1,5 @@
-var user = require("../models/user.model");
 var userService = require("../services/user.service");
-var apiResponse = require("../utils/api-response.util")
+var apiResponse = require("../utils/api-response.util");
 
 //get all users
 const getUsers = async (req, res) => {
@@ -13,26 +12,60 @@ const getUsers = async (req, res) => {
 };
 
 //get user by id
-const getUserById = function (req, res) {
-  const { id: userId } = req.params;
-  res.send(`respond user id ${userId}`);
+const getUserById = async (req, res) => {
+  try {
+    const { id: userId } = req.params;
+    const data = await userService.getUserById(userId);
+    if (!data) {
+      return apiResponse.failed(res, "User not found");
+    }
+    apiResponse.success(res, data);
+  } catch (err) {
+    apiResponse.failed(res, err.message);
+  }
 };
 
 // create user
-const createUser = function (req, res) {
-  res.status(201).send("user created");
+const createUser = async (req, res) => {
+  try {
+    const name = req.body.name;
+    const age = req.body.age;
+    await userService.createUser(name, age);
+    res.status(201).send();
+  } catch (err) {
+    apiResponse.failed(res, err.message);
+  }
 };
 
 // update user
-const updateUser = function (req, res) {
-  const { id: userId } = req.params;
-  res.status(204).send(`user id ${userId} updated`);
+const updateUser = async (req, res) => {
+  try {
+    const { id: userId } = req.params;
+    const age = req.body.age;
+    const user = await userService.getUserById(userId);
+    if (!user) {
+      return apiResponse.failed(res, "User not found");
+    }
+    await userService.updateUser(user, age);
+    res.status(204).send();
+  } catch (err) {
+    apiResponse.failed(res, err.message);
+  }
 };
 
 // delete user
-const deleteUser = function (req, res) {
-  const { id: userId } = req.params;
-  res.status(204).send(`user id ${userId} deleted`);
+const deleteUser = async (req, res) => {
+  try {
+    const { id: userId } = req.params;
+    const user = await userService.getUserById(userId);
+    if (!user) {
+      return apiResponse.failed(res, "User not found");
+    }
+    await userService.deleteUser(user);
+    res.status(204).send();
+  } catch (err) {
+    apiResponse.failed(res, err.message);
+  }
 };
 
 module.exports = { getUsers, getUserById, createUser, updateUser, deleteUser };

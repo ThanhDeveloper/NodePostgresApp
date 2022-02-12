@@ -9,7 +9,7 @@ router.get('/', userController.getUsers);
 router.get('/:id', userController.getUserById);
 
 // POST request for creating user.
-router.post('/create', userController.createUser);
+router.post('/', userController.createUser);
 
 // PATCH request to update user 
 router.patch('/:id', userController.updateUser);

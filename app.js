@@ -11,7 +11,7 @@ var cors = require('cors');
 var notFoundMiddleware = require ('./middleware/not-found.middleware')
 var errorHandlerMiddleware = require ('./middleware/error-handle.middleware')
 
-var indexRouter = require('./routes/index.route');
+var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/user.route');
 
 var limitRequest =  require('./utils/limit-request.util');
@@ -31,7 +31,7 @@ app.use(cookieParser());
 
 // routers and limit request
 app.use('/', indexRouter);
-app.use('/api/users', limitRequest.apiLimiter(1, 5), usersRouter);
+app.use('/api/v1/users', limitRequest.apiLimiter(1, 5), usersRouter);
 
 // middleware
 app.use(notFoundMiddleware)
