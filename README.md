@@ -16,12 +16,12 @@ This application includes:
   ```shell
   npm run server
   ```
-  - Start client
+- Start client
     > run the command below
   ```shell
   npm run client
   ```
-  - Start concurrently client and server
+- Start concurrently client and server
     > run the command below
   ```shell
   npm run dev
