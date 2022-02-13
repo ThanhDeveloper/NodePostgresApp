@@ -3,6 +3,7 @@ This application includes:
 - Backend: Nodejs + Expressjs
 - Client: Reactjs
 - Database: Postgres SQL
+- ORM library for nodejs: Sequelize
 
 ## Setup
 
@@ -41,3 +42,4 @@ Use `http://localhost:5001` as base url for endpoints
 | Delete user       | api/v1/users/:id | `DELETE` |
 
 ## App demo
+![image](https://user-images.githubusercontent.com/48196420/153742627-7314e834-e0b7-45de-a6d2-f64cb2d90d4d.png)
