@@ -30,8 +30,8 @@ const createUser = async (req, res) => {
   try {
     const name = req.body.name;
     const age = req.body.age;
-    await userService.createUser(name, age);
-    res.status(201).send();
+    const data = await userService.createUser(name, age);
+    apiResponse.success(res, data);
   } catch (err) {
     apiResponse.failed(res, err.message);
   }
@@ -41,12 +41,13 @@ const createUser = async (req, res) => {
 const updateUser = async (req, res) => {
   try {
     const { id: userId } = req.params;
+    const name = req.body.name;
     const age = req.body.age;
     const user = await userService.getUserById(userId);
     if (!user) {
       return apiResponse.failed(res, "User not found");
     }
-    await userService.updateUser(user, age);
+    await userService.updateUser(user, name, age);
     res.status(204).send();
   } catch (err) {
     apiResponse.failed(res, err.message);

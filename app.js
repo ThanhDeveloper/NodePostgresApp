@@ -31,7 +31,7 @@ app.use(cookieParser());
 
 // routers and limit request
 app.use('/', indexRouter);
-app.use('/api/v1/users', limitRequest.apiLimiter(1, 5), usersRouter);
+app.use('/api/v1/users', limitRequest.apiLimiter(1, 100), usersRouter);
 
 // middleware
 app.use(notFoundMiddleware)

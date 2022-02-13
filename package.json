@@ -4,7 +4,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon --watch routes --watch controllers --watch services ./bin/www"
+    "server": "nodemon --watch routes --watch controllers --watch services ./bin/www --ignore client",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
