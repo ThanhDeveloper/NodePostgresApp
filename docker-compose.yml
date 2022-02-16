@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  server:
+    env_file:
+        "./.env"
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    image: "thanhnt/server-side"
+    ports:
+      - "1357:5001" 
+  client:
+    build: 
+      context: ./client
+      dockerfile: ./Dockerfile
+    image: "thanhnt/client-side"
+    ports:
+      - "2468:3000"
+    links:
+      - "server"
+  postgres:
+    image: postgres:14.1-alpine
+    restart: always
+    ports:
+        - "6996:5432"
+    environment:
+        - POSTGRES_PASSWORD=dockeradmin
+    volumes:
+        - ./postgresql/data:/var/lib/postgresql14/data
