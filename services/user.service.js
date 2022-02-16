@@ -1,18 +1,18 @@
 const db = require("../models");
-const User = db.User;
+const user = db.user;
 
 async function getUsers() {
-  const rows = await User.findAll({ order: [['id', 'ASC']] });
+  const rows = await user.findAll({ order: [['id', 'ASC']] });
   return rows;
 }
 
 async function getUserById(userId) {
-  const row = await User.findByPk(userId);
+  const row = await user.findByPk(userId);
   return row;
 }
 
 async function createUser(name, age) {
-  const row = await User.create({
+  const row = await user.create({
     name: name,
     age: age,
   }).then(result => {

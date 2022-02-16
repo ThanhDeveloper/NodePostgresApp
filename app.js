@@ -1,23 +1,23 @@
-//import 
-var express = require('express');
+//import
+var express = require("express");
 var app = express();
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var xss =  require('xss-clean');
-var helmet = require('helmet');
-var morgan = require('morgan');
-var cors = require('cors');
+var path = require("path");
+var cookieParser = require("cookie-parser");
+var xss = require("xss-clean");
+var helmet = require("helmet");
+var morgan = require("morgan");
+var cors = require("cors");
 
-var notFoundMiddleware = require ('./middleware/not-found.middleware')
-var errorHandlerMiddleware = require ('./middleware/error-handle.middleware')
+var notFoundMiddleware = require("./middleware/not-found.middleware");
+var errorHandlerMiddleware = require("./middleware/error-handle.middleware");
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/user.route');
+var indexRouter = require("./routes/index");
+var usersRouter = require("./routes/user.route");
 
-var limitRequest =  require('./utils/limit-request.util');
+var limitRequest = require("./utils/limit-request.util");
 
-if (process.env.NODE_ENV !== 'production') {
-  app.use(morgan('dev'))
+if (process.env.NODE_ENV !== "production") {
+  app.use(morgan("dev"));
 }
 
 //use
@@ -30,11 +30,11 @@ app.use(cookieParser());
 //app.use(express.static(path.join(__dirname, 'public')));
 
 // routers and limit request
-app.use('/', indexRouter);
-app.use('/api/v1/users', limitRequest.apiLimiter(1, 100), usersRouter);
+app.use("/", indexRouter);
+app.use("/api/v1/users", limitRequest.apiLimiter(1, 100), usersRouter);
 
 // middleware
-app.use(notFoundMiddleware)
-app.use(errorHandlerMiddleware)
+app.use(notFoundMiddleware);
+app.use(errorHandlerMiddleware);
 
 module.exports = app;
