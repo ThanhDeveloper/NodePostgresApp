@@ -5,6 +5,9 @@ This application includes:
 - Database: Postgres SQL
 - Nodejs ORM library: Sequelize
 
+## Other 
+Integrate docker here => https://github.com/ThanhDeveloper/NodePostgresApp/tree/docker-integration
+
 ## Sequelize and migrations
 Make sure you run this command ```npm install --save sequelize-cli -g ```
 
