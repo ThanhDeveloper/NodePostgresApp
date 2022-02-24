@@ -1,5 +1,5 @@
 const db = require("../models");
-const user = db.user;
+const User = db.user;
 
 async function getUsers() {
   const rows = await user.findAll({ order: [['id', 'ASC']] });
@@ -7,12 +7,15 @@ async function getUsers() {
 }
 
 async function getUserById(userId) {
-  const row = await user.findByPk(userId);
+  const row = await User.findByPk(userId);
+  if (!row) {
+    throw new Error("User not found");
+  }
   return row;
 }
 
 async function createUser(name, age) {
-  const row = await user.create({
+  const row = await User.create({
     name: name,
     age: age,
   }).then(result => {
@@ -22,13 +25,21 @@ async function createUser(name, age) {
 }
 
 async function updateUser(user, name, age) {
+  const userExist = await userService.getUserById(userId);
+    if (!userExist) {
+      throw new Error('User not found');
+  }
   await user.update({
     name: name,
     age: age,
   });
 }
 
-async function deleteUser(user) {
+async function deleteUser(userId) {
+  const userExist = await userService.getUserById(userId);
+  if (!userExist) {
+    throw new Error(res, "User not found");
+  }
   await user.destroy();
 }
 

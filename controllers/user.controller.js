@@ -16,9 +16,6 @@ const getUserById = async (req, res) => {
   try {
     const { id: userId } = req.params;
     const data = await userService.getUserById(userId);
-    if (!data) {
-      return apiResponse.failed(res, "User not found");
-    }
     apiResponse.success(res, data);
   } catch (err) {
     apiResponse.failed(res, err.message);
@@ -43,10 +40,6 @@ const updateUser = async (req, res) => {
     const { id: userId } = req.params;
     const name = req.body.name;
     const age = req.body.age;
-    const user = await userService.getUserById(userId);
-    if (!user) {
-      return apiResponse.failed(res, "User not found");
-    }
     await userService.updateUser(user, name, age);
     res.status(204).send();
   } catch (err) {
@@ -58,11 +51,7 @@ const updateUser = async (req, res) => {
 const deleteUser = async (req, res) => {
   try {
     const { id: userId } = req.params;
-    const user = await userService.getUserById(userId);
-    if (!user) {
-      return apiResponse.failed(res, "User not found");
-    }
-    await userService.deleteUser(user);
+    await userService.deleteUser(userId);
     res.status(204).send();
   } catch (err) {
     apiResponse.failed(res, err.message);

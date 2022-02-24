@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "postgres",
-    "password": "dockeradmin",
-    "database": "docker_database_development",
-    "host": "nodepostgresapp_postgres_1",
+    "username": "root",
+    "password": null,
+    "database": "database_dev",
+    "host": "127.0.0.1",
     "port": "5432",
     "dialect": "postgres"
   },
