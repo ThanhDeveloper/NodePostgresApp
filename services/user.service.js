@@ -1,35 +1,19 @@
 const db = require("../models");
-const user = db.user;
+const User = db.user;
 
 async function getUsers() {
-  const rows = await user.findAll({ order: [['id', 'ASC']] });
-  return rows;
+    return await User.findAll({attributes: ['id', 'username']}, {order: [['id', 'ASC']]});
 }
 
 async function getUserById(userId) {
-  const row = await user.findByPk(userId);
-  return row;
+    return await User.findByPk(userId, {
+        attributes: ['username']
+    }).then(user => {
+        if (!user) {
+            throw new Error('User not found')
+        }
+        return user;
+    })
 }
 
-async function createUser(name, age) {
-  const row = await user.create({
-    name: name,
-    age: age,
-  }).then(result => {
-    return result;
-  });
-  return row;
-}
-
-async function updateUser(user, name, age) {
-  await user.update({
-    name: name,
-    age: age,
-  });
-}
-
-async function deleteUser(user) {
-  await user.destroy();
-}
-
-module.exports = { getUsers, getUserById, createUser, updateUser, deleteUser };
+module.exports = {getUsers, getUserById};
