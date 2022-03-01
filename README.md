@@ -7,6 +7,7 @@ This application includes:
 
 ## Other 
 Integrate docker here => https://github.com/ThanhDeveloper/NodePostgresApp/tree/docker-integration
+Backend struct with authentication: https://github.com/ThanhDeveloper/NodePostgresApp/tree/backend-structure
 
 ## Sequelize and migrations
 Make sure you run this command ```npm install --save sequelize-cli -g ```
